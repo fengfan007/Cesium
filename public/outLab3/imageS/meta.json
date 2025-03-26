@@ -1,0 +1,23 @@
+{
+  "bounds": {   
+    "east": 113.60314952490516,
+    "north": 36.37382670085862,
+    "south": 36.34545275664443,
+    "west": 113.54212926981636
+  },
+  "contentType": "image/png",
+  "generatetool": "cesiumlab3@www.cesiumlab.com/imagetiler",
+  "latLonBounds": {
+    "east": 113.60314952490516,
+    "north": 36.37382670085862,
+    "south": 36.34545275664443,
+    "west": 113.54212926981636
+  },
+  "maxzoom": 18,
+  "minzoom": 0,
+  "proj": 3857,
+  "tilesize": 256,
+  "tiletrans": "google",
+  "type": "image",
+  "ziped": false
+}
