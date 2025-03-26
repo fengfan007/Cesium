@@ -7,7 +7,7 @@ import * as Cesium from "cesium";
 import { onMounted, onUnmounted } from "vue";
 
 // 配置Cesium的静态资源路径
-window.CESIUM_BASE_URL = "/node_modules/cesium/Build/Cesium/";
+window.CESIUM_BASE_URL = "/Cesium/";
 
 // 配置Cesium的访问令牌
 Cesium.Ion.defaultAccessToken =
@@ -100,11 +100,11 @@ const initCesiumViewer = async () => {
   // 设置相机视角
   viewer.camera.setView({
     destination: rectangle,
-    orientation: {
-      heading: 0.0, // 方向
-      pitch: -Cesium.Math.toRadians(45), // 俯仰角
-      roll: 0.0, // 旋转
-    },
+    // orientation: {
+    //   heading: 0.0, // 方向
+    //   pitch: -Cesium.Math.toRadians(45), // 俯仰角
+    //   roll: 0.0, // 旋转
+    // },
   });
   // 设置最大缩放级别
   viewer.scene.screenSpaceCameraController.maximumZoomDistance =
