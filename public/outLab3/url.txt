@@ -1,9 +1,0 @@
-//地形文件
-C:/Users/Administrator/Desktop/outLab3/terrS/layer.json
-
-//影像文件——tms
-C:/Users/Administrator/Desktop/outLab3/imageS/tilemapresource.xml
-//影像文件——wmts
-C:/Users/Administrator/Desktop/outLab3/imageS/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.png
-
-该地形经纬度：36.35938      113.5728

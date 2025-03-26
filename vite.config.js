@@ -14,12 +14,12 @@ export default defineConfig({
     }
   },
   server: {
-    // proxy: {
-    //   '/outLab3': {
-    //     target: 'http://192.168.1.200/',
-    //     changeOrigin: true,
-    //   }
-    // }
+    proxy: {
+      '/outLab3': {
+        target: 'http://192.168.1.200/',
+        changeOrigin: true,
+      }
+    }
   },
   plugins: [
     vue(),

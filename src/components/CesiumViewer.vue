@@ -60,6 +60,20 @@ const initCesiumViewer = async () => {
   // 使用 meta.json 中的数据进行配置
   const { bounds, maxzoom, minzoom } = metaData.value;
 
+  // 添加模型
+  const modelEntity = viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(
+      113.60314952490516,
+      36.37382670085862
+    ), // 模型的位置（与点相同）
+    model: {
+      uri: "/models/GroundVehicle/GroundVehicle.glb", // 模型文件的路径，需替换为实际路径
+      // scale: 100.0, // 模型的缩放比例
+      minimumPixelSize: 108, // 模型的最小像素大小
+      maximumScale: 20000, // 模型的最大缩放比例
+    },
+  });
+  // viewer.trackedEntity = modelEntity;
   //加载离线地图
   const offlineImageryProvider = new Cesium.UrlTemplateImageryProvider({
     url: "/outLab3/imageS/{z}/{x}/{y}.png", // 替换为你的瓦片地图路径
@@ -69,6 +83,7 @@ const initCesiumViewer = async () => {
   });
   //  添加离线地图到 Viewer
   const layer = viewer.imageryLayers.addImageryProvider(offlineImageryProvider);
+
   // 计算矩形边界
   const rectangle = Cesium.Rectangle.fromDegrees(
     bounds.west,
@@ -76,15 +91,24 @@ const initCesiumViewer = async () => {
     bounds.east,
     bounds.north
   );
+  // 根据矩形边界计算相机的最大缩放距离
+  const corner1 = Cesium.Cartesian3.fromDegrees(bounds.west, bounds.south);
+  const corner2 = Cesium.Cartesian3.fromDegrees(bounds.east, bounds.north);
+  const distance = Cesium.Cartesian3.distance(corner1, corner2);
+  const maxZoomDistance = distance * 1; // 可以根据实际情况调整倍数
+
   // 设置相机视角
   viewer.camera.setView({
     destination: rectangle,
     orientation: {
-      heading: Cesium.Math.toRadians(0.0),
-      pitch: Cesium.Math.toRadians(-15.0),
-      roll: 0.0,
+      heading: 0.0, // 方向
+      pitch: -Cesium.Math.toRadians(45), // 俯仰角
+      roll: 0.0, // 旋转
     },
   });
+  // 设置最大缩放级别
+  viewer.scene.screenSpaceCameraController.maximumZoomDistance =
+    maxZoomDistance;
   // 设置初始视角
   // viewer.camera.setView({
   //   destination: Cesium.Cartesian3.fromDegrees(
@@ -125,17 +149,6 @@ const initCesiumViewer = async () => {
   //   },
   // });
 
-  // 添加模型
-  // const modelEntity = viewer.entities.add({
-  //   position: Cesium.Cartesian3.fromDegrees(36.35938, 113.5728), // 模型的位置（与点相同）
-  //   model: {
-  //     uri: "/models/GroundVehicle/GroundVehicle.glb", // 模型文件的路径，需替换为实际路径
-  //     // scale: 100.0, // 模型的缩放比例
-  //     minimumPixelSize: 108, // 模型的最小像素大小
-  //     maximumScale: 20000, // 模型的最大缩放比例
-  //   },
-  // });
-  // viewer.trackedEntity = modelEntity;
   // viewer.camera.setView({
   //   destination: Cesium.Cartesian3.fromDegrees(36.35938, 113.5728, 1000), // 替换为瓦片地图所在区域的经纬度和高度
   //   orientation: {
@@ -147,7 +160,7 @@ const initCesiumViewer = async () => {
 };
 
 onMounted(async () => {
-  const response = await fetch("/outLab3/imageS/meta.json");
+  const response = await fetch("/meta.json");
   metaData.value = await response.json();
   initCesiumViewer();
 });
