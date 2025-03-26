@@ -13,14 +13,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src') // 配置 @ 别名指向 src 目录
     }
   },
-  server: {
-    proxy: {
-      '/outLab3': {
-        target: 'http://192.168.1.200/',
-        changeOrigin: true,
-      }
-    }
-  },
+  // server: {
+  //   proxy: {
+  //     '/outLab3': {
+  //       target: 'http://192.168.1.200/',
+  //       changeOrigin: true,
+  //     }
+  //   }
+  // },
   plugins: [
     vue(),
     cesium(),
