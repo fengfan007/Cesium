@@ -13,7 +13,8 @@
     "element-plus": "^2.9.7",
     "vite-plugin-cesium": "^1.2.23",
     "vue": "^3.5.13",
-    "vue-cesium": "^3.2.9"
+    "vue-cesium": "^3.2.9",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@unocss/preset-attributify": "66.1.0-beta.6",
